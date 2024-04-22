@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+}
+
+.all {
+    background-color: rgb(214, 214, 214);
+    height: 100vh;
+    padding: 9%;
+    margin: 0% 10%;
+}
+
+#head {
+    color: rgb(116, 112, 112);
+    text-align: center;
+}
+
+#elementsall {
+    font-weight: bold;
+}
+
+input[type=button] {
+    padding: 2px 6px;
+    border-radius: 9px;
+
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BaseConversions</title>
+  <link rel="stylesheet" href="baseconvo.css">
+</head>
+
+<body>
+  <div class="all">
+
+    <div id="head">
+      <h1>Base Conversions</h1>
+      <br><br><br>
+    </div>
+
+    <div id="elementsall">
+      <form action="">
+        <label for="from">from</label>
+        <select id="from">
+          <option selected value="" disabled>select</option>
+          <option value=32>Duotrigesimal</option>
+          <option value=16>hexadecimal</option>
+          <option value=12>Duodecimal</option>
+          <option value=10>decimal</option>
+          <option value=8>octal</option>
+          <option value=2>binary</option>
+        </select>
+        <br>
+        <br>
+
+        <p id="detail"></p>
+        <label for="val">enter value:</label>
+        <input type="text" id="val">
+        <br>
+        <br>
+        <label for="to">to</label>
+        <select id="to">
+          <option selected value="" disabled>select</option>
+          <option value=32>Duotrigesimal</option>
+          <option value=16>hexadecimal</option>
+          <option value=12>Duodecimal</option>
+          <option value=10>decimal</option>
+          <option value=8>octal</option>
+          <option value=2>binary</option>
+        </select>
+        <br>
+        <br>
+        <input type="button" onclick="convrt( )" value="change">
+      </form>
+      <br>
+
+      <span>~</span>
+      <span id="ans"></span>
+    </div>
+
+  </div>
+
+  <script>
+    function convrt() {
+      let to = parseInt(document.getElementById('to').value, 10);
+      let from = parseInt(document.getElementById('from').value, 10);
+      let input = document.getElementById('val').value;
+      let value = parseInt(input, from);
+      let answer = value.toString(to);
+      document.getElementById('ans').textContent = "Result is " + answer + " in base" + to;
+    }
+
+  </script>
+
+</body>
+
+</html>
