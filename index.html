@@ -10,52 +10,41 @@
 
 <body>
   <div class="all">
-
-    <div id="head">
-      <h1>Base Conversions</h1>
-      <br><br><br>
-    </div>
-
-    <div id="elementsall">
-      <form action="">
-        <label for="from">from</label>
-        <select id="from">
-          <option selected value="" disabled>select</option>
-          <option value=32>Duotrigesimal</option>
-          <option value=16>hexadecimal</option>
-          <option value=12>Duodecimal</option>
-          <option value=10>decimal</option>
-          <option value=8>octal</option>
-          <option value=2>binary</option>
+    <h2>BASE CONVERSIONS</h2>
+    <br>
+    <br>
+    <form action="">
+      <div id="labels"> <label for="from" >convert from (number syestem)</label></div>
+      <select id="from">
+          <option selected value="" disabled>From base</option>
+          <option value=32>(32) Duotrigesimal</option>
+          <option value=16>(16) hexadecimal</option>
+          <option value=12>(12) Duodecimal</option>
+          <option value=10>(10) Decimal</option>
+          <option value=8>(8) Octal</option>
+          <option value=2>(2) Binary</option>
         </select>
         <br>
         <br>
-
-        <p id="detail"></p>
-        <label for="val">enter value:</label>
-        <input type="text" id="val">
+        <input type="text" id="val" placeholder="Enter value to convert">
         <br>
         <br>
-        <label for="to">to</label>
+        <div id="labels"> <label for="to" >convert from (number syestem)</label></div>
         <select id="to">
-          <option selected value="" disabled>select</option>
-          <option value=32>Duotrigesimal</option>
-          <option value=16>hexadecimal</option>
-          <option value=12>Duodecimal</option>
-          <option value=10>decimal</option>
-          <option value=8>octal</option>
-          <option value=2>binary</option>
+          <option selected value="" disabled>To Base</option>
+          <option value=32>(32) Duotrigesimal</option>
+          <option value=16>(16) hexadecimal</option>
+          <option value=12>(12) Duodecimal</option>
+          <option value=10>(10) Decimal</option>
+          <option value=8>(8) Octal</option>
+          <option value=2>(2) Binary</option>
         </select>
         <br>
         <br>
-        <input type="button" onclick="convrt( )" value="change">
+        <input type="button" id="btn" onclick="convrt( )" value="Convert">
       </form>
       <br>
-
-      <span>~</span>
       <span id="ans"></span>
-    </div>
-
   </div>
 
   <script>
@@ -63,11 +52,32 @@
       let to = parseInt(document.getElementById('to').value, 10);
       let from = parseInt(document.getElementById('from').value, 10);
       let input = document.getElementById('val').value;
+      // Check if both bases and input is provided
+      if (!from || !to) {
+        document.getElementById('ans').textContent = "Please select both 'from' and 'to' bases.";
+        return;
+      }
+      if (input.trim() === "") {
+        document.getElementById('ans').textContent = "Please enter a value to convert.";
+        return;
+      }
+      // Validate the input for the 'from' base
       let value = parseInt(input, from);
+      if (isNaN(value)) {
+        document.getElementById('ans').textContent = `Invalid value for base ${from}.`;
+        return;
+      }
+      // Convert to the target base
       let answer = value.toString(to);
-      document.getElementById('ans').textContent = "Result is " + answer + " in base" + to;
+      answer = answer.toUpperCase()
+      document.getElementById('ans').innerHTML = input + "<sub>(" + from + ")</sub> = " + answer + "<sub>(" + to + ")</sub>";
     }
-
+    document.getElementById('btn').addEventListener('click', function() {
+    this.classList.add('shrink'); 
+        setTimeout(() => {
+            this.classList.remove('shrink');
+        }, 200);
+    });
   </script>
 
 </body>
